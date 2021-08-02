@@ -104,9 +104,9 @@ import (
 func main() {
     goenvi.Add("properties", "config.properties")
     goenvi.Add("json", "config.json") // override properties if variable or file does not exists
-    goenvi.Add("toml", "config.toml") // override json if variable or file doesnot exists
-    goenvi.Add("yaml", "config.yaml") // override toml if variable or file doesnot exists
-    goenvi.Add("dotenv", ".env") // override yaml if variable or file doesnot exists
+    goenvi.Add("toml", "config.toml") // override json if variable or file does not exists
+    goenvi.Add("yaml", "config.yaml") // override toml if variable or file does not exists
+    goenvi.Add("dotenv", ".env") // override yaml if variable or file does not exists
     goenvi.Initialize()
 
     fmt.Println(os.Getenv("VERSION_NUMBER"))
