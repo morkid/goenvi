@@ -1,7 +1,7 @@
 # goenvi - Simple golang environment initializer
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/morkid/paginate)](https://goreportcard.com/report/github.com/morkid/paginate)
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/morkid/paginate)](https://github.com/morkid/paginate/releases)
+[![Go Report Card](https://goreportcard.com/badge/github.com/morkid/goenv)](https://goreportcard.com/report/github.com/morkid/goenv)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/morkid/goenv)](https://github.com/morkid/goenv/releases)
 
 Initialize your environment variables in one shot. goenvi is built on top of [Viper](https://github.com/spf13/viper).
 
@@ -86,5 +86,5 @@ func main() {
 
 ## License
 
-Published under the [MIT License](https://github.com/morkid/paginate/blob/master/LICENSE).
+Published under the [MIT License](https://github.com/morkid/goenv/blob/master/LICENSE).
 
