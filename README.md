@@ -1,5 +1,7 @@
 # goenvi - Simple golang environment initializer
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/morkid/goenvi.svg)](https://pkg.go.dev/github.com/morkid/goenvi)
+[![Github Actions](https://github.com/morkid/goenvi/workflows/Go/badge.svg)](https://github.com/morkid/goenvi/actions)
 [![Go Report Card](https://goreportcard.com/badge/github.com/morkid/goenvi)](https://goreportcard.com/report/github.com/morkid/goenvi)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/morkid/goenvi)](https://github.com/morkid/goenvi/releases)
 
