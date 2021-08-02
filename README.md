@@ -103,10 +103,10 @@ import (
 
 func main() {
     goenvi.Add("properties", "config.properties")
-    goenvi.Add("json", "config.json")
-    goenvi.Add("toml", "config.toml")
-    goenvi.Add("yaml", "config.yaml")
-    goenvi.Add("dotenv", ".env")
+    goenvi.Add("json", "config.json") // override properties if variable or file does not exists
+    goenvi.Add("toml", "config.toml") // override json if variable or file doesnot exists
+    goenvi.Add("yaml", "config.yaml") // override toml if variable or file doesnot exists
+    goenvi.Add("dotenv", ".env") // override yaml if variable or file doesnot exists
     goenvi.Initialize()
 
     fmt.Println(os.Getenv("VERSION_NUMBER"))
@@ -120,7 +120,7 @@ func main() {
 ```go
 func main() {
     myEnv := viper.New()
-    goenvi.Register(myEnv, true)
+    goenvi.Register(myEnv, true) // false if you want to load after .env loaded
     goenvi.Initialize()
 }
 ```
@@ -131,7 +131,9 @@ by implementing `goenvi.FlagSetProvider` interface, you can register command-lin
 
 ```go
 import (
+    "github.com/morkid/goenvi"
     "github.com/spf13/pflag"
+    "github.com/spf13/viper"
 )
 
 type myFlagSet struct {}
