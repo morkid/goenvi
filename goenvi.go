@@ -10,24 +10,29 @@ import (
 	"github.com/spf13/viper"
 )
 
+// New Environment
 func New() *Environment {
 	return &Environment{}
 }
 
 var e *Environment = New()
 
+// Initialize environment
 func Initialize() {
 	e.Initialize()
 }
 
+// Register custom viper
 func Register(v *viper.Viper, optional bool) {
 	e.Register(v, optional)
 }
 
+// AddFlagSetProvider add flag set provider
 func AddFlagSetProvider(f FlagSetProvider) {
 	e.AddFlagSetProvider(f)
 }
 
+// Add from local file
 func Add(envType string, fileName string) {
 	e.Add(envType, fileName)
 }
