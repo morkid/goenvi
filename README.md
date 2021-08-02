@@ -18,6 +18,7 @@ Supported config file:
 - yaml / yml
 - toml
 - java properties
+- see more about [supported config](https://github.com/spf13/viper#what-is-viper)
 
 ## How to use goenvi
 
@@ -65,6 +66,7 @@ By default goenvi autoload `.env` file in current working directory.
 }
 ```
 
+`cat main.go`
 ```go
 package main
 
@@ -85,6 +87,70 @@ func main() {
     fmt.Println(viper.GetInt("version.name"))
 }
 ```
+
+## Multiple variations in one shot
+
+`cat main.go`
+```go
+package main
+
+import (
+    "os"
+    "fmt"
+    "github.com/morkid/goenvi"
+    ...
+)
+
+func main() {
+    goenvi.Add("properties", "config.properties")
+    goenvi.Add("json", "config.json")
+    goenvi.Add("toml", "config.toml")
+    goenvi.Add("yaml", "config.yaml")
+    goenvi.Add("dotenv", ".env")
+    goenvi.Initialize()
+
+    fmt.Println(os.Getenv("VERSION_NUMBER"))
+    fmt.Println(os.Getenv("VERSION_NAME"))
+    fmt.Println(viper.GetInt("version.number"))
+    fmt.Println(viper.GetInt("version.name"))
+}
+```
+
+## Register custom viper instance
+```go
+func main() {
+    myEnv := viper.New()
+    goenvi.Register(myEnv, true)
+    goenvi.Initialize()
+}
+```
+
+## Register command-line parameters as environment
+
+by implementing `goenvi.FlagSetProvider` interface, you can register command-line parameters as environment variables.
+
+```go
+import (
+    "github.com/spf13/pflag"
+)
+
+type myFlagSet struct {}
+func (myFlagSet) VisitAll(fn func(*pflag.FlagSet)) {
+    defaultValue := viper.GetString("message")
+    pflag.String("message", defaultValue, "message to show")
+    pflag.Parse()
+
+    fn(pflag.CommandLine)
+}
+
+func main() {
+    goenvi.AddFlagSetProvider(myFlagSet{})
+    goenvi.Initialize()
+}
+```
+
+> Note:  
+> `pflag` will override some environment variables if command-line parameters specified
 
 ## License
 
